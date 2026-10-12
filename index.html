@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>北九州 4天3夜</title>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<style>
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-tile-container,.leaflet-layer{position:absolute;left:0;top:0}.leaflet-container{overflow:hidden;position:relative;touch-action:none;-webkit-tap-highlight-color:transparent}.leaflet-tile,.leaflet-marker-icon{user-select:none;-webkit-user-drag:none}.leaflet-tile{visibility:hidden}.leaflet-tile-loaded{visibility:inherit}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-marker-pane{z-index:600}.leaflet-popup-pane{z-index:700}.leaflet-pane{z-index:400}.leaflet-zoom-animated{transform-origin:0 0}.leaflet-marker-icon{display:block}
+.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px;background:#fff}.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;transform:rotate(45deg);background:#fff}.leaflet-popup-close-button{position:absolute;top:0;right:0;padding:4px 8px 0 0;font:16px/24px sans-serif;color:#757575;text-decoration:none}
+.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-right{right:0}.leaflet-control{position:relative;z-index:800;float:left;clear:both;pointer-events:auto;margin:10px}.leaflet-right .leaflet-control{float:right}.leaflet-control-attribution{background:rgba(255,255,255,.8);padding:0 5px;font-size:11px;margin:0}.leaflet-bar{border-radius:4px;box-shadow:0 1px 5px rgba(0,0,0,.4)}.leaflet-bar a{display:block;width:30px;height:30px;line-height:30px;text-align:center;text-decoration:none;background:#fff;color:#000;border-bottom:1px solid #ccc}
+:root{--bg:#FFFCF6;--ink:#3E3A39;--pink:#F2A497;--yel:#F6D27A;--blue:#A8D3E6;--green:#B9DAA5;--pur:#8E6BBF;box-sizing:border-box;color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Huninn','Hiragino Maru Gothic ProN','PingFang TC','Noto Sans TC',sans-serif;line-height:1.6;font-size:16px}
+a{color:inherit}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:3px solid var(--ink);display:flex;gap:6px;padding:8px 10px;overflow-x:auto}
+nav a{flex:1 0 auto;text-align:center;text-decoration:none;border:3px solid var(--ink);border-radius:999px;padding:2px 12px;font-size:15px;background:#fff}
+nav a:nth-child(1){background:var(--pink)}nav a:nth-child(2){background:var(--blue)}nav a:nth-child(3){background:var(--yel)}nav a:nth-child(4){background:var(--green)}nav a:nth-child(5){background:var(--pink)}
+main{max-width:640px;margin:0 auto;padding:16px 14px 48px}
+section{margin-top:28px}
+h2{font-size:22px;margin:0 0 12px;display:inline-block;background:var(--yel);border:3px solid var(--ink);border-radius:999px;padding:0 16px}
+.card{background:#fff;border:3px solid var(--ink);border-radius:26px;padding:16px}
+.hero{background:var(--blue);padding:0;overflow:hidden;text-align:center}
+.hero svg{display:block;width:100%;height:auto;border-bottom:3px solid var(--ink)}
+.hero .tx{padding:14px 14px 18px;background:var(--bg)}
+.hero h1{margin:0;font-size:30px;line-height:1.2}
+.hero p{margin:4px 0 12px}
+.cd{display:flex;justify-content:center;gap:8px}
+.cd div{background:var(--pink);border:3px solid var(--ink);border-radius:18px;min-width:62px;padding:2px 6px}
+.cd b{display:block;font-size:26px;line-height:1.3}.cd small{font-size:12px}
+.flight{display:grid;gap:14px}
+.fl{border:3px solid var(--ink);border-radius:22px;padding:12px 14px;background:var(--bg)}
+.fl.out{background:#e9f4fa}.fl.back{background:#fdeeea}
+.fl h3{margin:0 0 6px;font-size:17px}
+.route{display:flex;align-items:center;justify-content:space-between;text-align:center}
+.route .ap b{font-size:26px;display:block;line-height:1.1}
+.route .ap small{display:block}
+.route .mid{flex:1;font-size:22px;padding:0 6px}
+.tm{display:flex;justify-content:space-between;margin-top:8px;font-size:15px}
+.tm span{background:#fff;border:3px solid var(--ink);border-radius:999px;padding:0 12px}
+.tabs{display:flex;gap:8px;margin-bottom:14px}
+.tabs button{flex:1;font:inherit;border:3px solid var(--ink);border-radius:20px;background:#fff;color:var(--ink);padding:4px 0;line-height:1.25;cursor:pointer}
+.tabs button small{display:block;font-size:12px}
+.tabs button.on{background:var(--pink);transform:translateY(-3px)}
+.tabs button.pop{animation:pop .5s}
+@keyframes pop{0%{transform:scale(1)}35%{transform:scale(1.18) rotate(-3deg)}65%{transform:scale(.94)}100%{transform:scale(1)}}
+.dayhead{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:18px}
+.dayhead i{font-style:normal;background:#4A5258;color:#fff;border:3px solid var(--ink);border-radius:999px;padding:0 12px;font-size:14px}
+.tl{list-style:none;margin:0;padding:0 0 0 22px;border-left:3px dashed var(--ink)}
+.tl.bounce li{animation:rise .5s both}
+.tl.bounce li:nth-child(2){animation-delay:.07s}.tl.bounce li:nth-child(3){animation-delay:.14s}.tl.bounce li:nth-child(4){animation-delay:.21s}.tl.bounce li:nth-child(5){animation-delay:.28s}.tl.bounce li:nth-child(6){animation-delay:.35s}.tl.bounce li:nth-child(7){animation-delay:.42s}
+@keyframes rise{0%{opacity:0;transform:translateY(24px) scale(.9)}60%{opacity:1;transform:translateY(-6px) scale(1.03)}100%{transform:none}}
+.tl li{position:relative;margin-bottom:14px}
+.tl li::before{content:"";position:absolute;left:-34px;top:10px;width:16px;height:16px;border-radius:50%;background:var(--yel);border:3px solid var(--ink)}
+.tl li.must::before{background:var(--pink)}
+.stop{background:#fff;border:3px solid var(--ink);border-radius:20px;padding:8px 12px}
+.stop b{font-size:17px}
+.stop p{margin:2px 0 0;font-size:14px}
+.tl li.stay .stop{background:var(--pur);color:#fff}.tl li.stay::before{display:none}.tl li.stay .btn{color:var(--ink)}
+.stay-label{font-size:13px;margin-bottom:2px}
+.tag{display:inline-block;font-size:12px;border:2px solid var(--ink);border-radius:999px;padding:0 9px;margin:0 4px 4px 0;line-height:1.5}
+.bus{background:var(--pink)}.train{background:var(--yel)}.boat{background:var(--blue)}.walk{background:var(--green)}.plane,.st{background:#fff}.taxi{background:var(--yel)}
+.ic{width:1.15em;height:1.15em;vertical-align:-.2em;margin-right:3px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.fl-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:12px}.fl-head h2{margin:0}
+.bag{background:#fff;border:3px solid var(--ink);border-radius:999px;padding:0 14px;font-size:14px;line-height:1.7}
+.cat{display:inline-block;font-size:11px;background:var(--pur);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:0 7px;margin-right:5px;line-height:1.4}
+.pl{display:block;margin:8px 0 0;font-size:15px;text-decoration:none}.pl:active{opacity:.6}
+.mapcard{padding:12px}.chips{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 10px}
+.chips button{flex:none;font:inherit;font-size:13px;border:3px solid var(--ink);border-radius:999px;background:#fff;color:var(--ink);padding:0 10px;cursor:pointer;line-height:1.6}
+.chips button.on{background:var(--pur);color:#fff}
+#gmap{display:block;width:100%;height:320px;border:3px solid var(--ink);border-radius:20px;background:var(--blue)}
+#dmap{height:260px;border:3px solid var(--ink);border-radius:20px;margin-bottom:14px;overflow:hidden;background:var(--blue);z-index:0;font-family:inherit}
+#dmap .leaflet-tile-pane{filter:sepia(.18) saturate(.9)}
+#dmap .leaflet-popup-content-wrapper{border:3px solid var(--ink);border-radius:16px;box-shadow:none}
+#dmap .leaflet-popup-content{margin:8px 12px;font:14px/1.5 inherit}#dmap .leaflet-popup-content a{color:var(--pur)}
+.pin{background:none;border:0}
+.grp+.grp{border-top:3px dashed var(--ink);margin-top:12px;padding-top:12px}
+.must-badge{float:right;background:var(--pink);border:2px solid var(--ink);border-radius:999px;font-size:12px;padding:0 8px;transform:rotate(4deg)}
+.via{font-size:13px;margin:-6px 0 10px;padding-left:2px}
+.todo{list-style:none;margin:0;padding:0}
+.todo li{margin-bottom:8px}
+.todo label{display:flex;gap:10px;align-items:center;cursor:pointer;border:3px solid var(--ink);border-radius:18px;padding:6px 12px;background:var(--bg)}
+.todo input{appearance:none;-webkit-appearance:none;flex:none;width:24px;height:24px;border:3px solid var(--ink);border-radius:8px;background:#fff;margin:0;display:grid;place-content:center}
+.todo input:checked{background:var(--green)}
+.todo input:checked::after{content:"✓";font-size:17px;line-height:1}
+.todo input:checked+span{text-decoration:line-through;opacity:.55}
+.prog{height:16px;border:3px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden;margin-bottom:12px}
+.prog div{height:100%;width:0;background:var(--green);transition:width .4s}
+.hotel{margin-bottom:12px;border-radius:22px}
+.hotel h3{margin:0}
+.btn{display:inline-block;text-decoration:none;border:3px solid var(--ink);border-radius:999px;padding:0 14px;margin:6px 6px 0 0;font-size:14px;background:#fff}
+.btn.b,.btn.p{background:#fff}
+.sub{font-size:17px;margin:16px 0 6px}
+.cloud{animation:drift 14s ease-in-out infinite alternate}.cloud2{animation-duration:19s;animation-direction:alternate-reverse}
+.boat-g{animation:bob 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.sun{animation:spin 30s linear infinite;transform-box:fill-box;transform-origin:center}
+.wave{animation:drift 5s ease-in-out infinite alternate}
+.bird{animation:bob 2.4s ease-in-out infinite}
+@keyframes drift{to{transform:translateX(26px)}}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-2deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+footer{text-align:center;font-size:13px;margin-top:30px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav>
+<a href="#top">首頁</a><a href="#flight">航班</a><a href="#plan">行程</a><a href="#todo">待辦</a>
+</nav>
+<main id="top">
+<div class="card hero">
+<svg viewBox="0 0 400 230" role="img" aria-label="關門海峽、紅色大橋與渡輪的插圖">
+<rect width="400" height="230" fill="#A8D3E6"/>
+<g class="sun"><circle cx="318" cy="52" r="26" fill="#F6D27A" stroke="#3E3A39" stroke-width="3"/>
+<g stroke="#3E3A39" stroke-width="3" stroke-linecap="round"><path d="M318 14v8M318 82v8M280 52h8M348 52h8M291 25l6 6M339 73l6 6M345 25l-6 6M297 73l-6 6"/></g></g>
+<g class="cloud" fill="#fff" stroke="#3E3A39" stroke-width="3"><path d="M30 60q0-16 16-16 6-12 22-8 14 0 16 14 12 2 10 14H34q-6-2-4-4z"/></g>
+<g class="cloud cloud2" fill="#fff" stroke="#3E3A39" stroke-width="3"><path d="M190 40q0-12 12-12 5-9 17-6 11 0 12 11 9 2 7 10h-44q-5-1-4-3z"/></g>
+<g class="bird" fill="none" stroke="#3E3A39" stroke-width="3" stroke-linecap="round"><path d="M150 90q6-8 12 0q6-8 12 0"/></g>
+<path d="M0 150q40-38 90-14t110-6q60-22 110 6t90-4V230H0z" fill="#B9DAA5" stroke="#3E3A39" stroke-width="3"/>
+<g stroke="#3E3A39" stroke-width="3" fill="#F2A497" stroke-linejoin="round"><path d="M40 138h330v10H40z"/><path d="M80 138V84M300 138V84" fill="none" stroke-width="8"/><path d="M80 90Q190 150 300 90M80 90L50 138M300 90l30 48" fill="none"/></g>
+<g stroke="#3E3A39" stroke-width="2" fill="none"><path d="M110 110v28M140 124v14M170 130v8M200 132v6M230 130v8M260 124v14M280 110v28"/></g>
+<rect y="150" width="400" height="80" fill="#A8D3E6" stroke="#3E3A39" stroke-width="3"/>
+<g class="wave" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"><path d="M20 205q10-8 20 0t20 0M300 212q10-8 20 0t20 0M140 222q10-8 20 0t20 0"/></g>
+<g class="boat-g" stroke="#3E3A39" stroke-width="3" stroke-linejoin="round">
+<path d="M130 178h120l-14 24H146z" fill="#F6D27A"/><rect x="156" y="154" width="68" height="24" rx="8" fill="#fff"/>
+<rect x="166" y="160" width="12" height="10" rx="3" fill="#A8D3E6"/><rect x="186" y="160" width="12" height="10" rx="3" fill="#A8D3E6"/><rect x="206" y="160" width="12" height="10" rx="3" fill="#A8D3E6"/>
+<rect x="184" y="140" width="12" height="14" rx="3" fill="#F2A497"/></g>
+<g stroke="#3E3A39" stroke-width="3" stroke-linejoin="round"><path d="M340 170v-30h30v30z" fill="#F2A497"/><path d="M336 140l19-14 19 14z" fill="#F6D27A"/><rect x="348" y="152" width="12" height="18" fill="#fff"/></g>
+</svg>
+<div class="tx"><h1>北九州<br>4天3夜小旅行</h1><p>10/15 (四) – 10/18 (日)・小倉・門司港・下關</p>
+<div class="cd" id="cd"></div><p id="cdmsg" style="margin:10px 0 0;font-size:14px"></p></div>
+</div>
+
+<section id="flight"><div class="fl-head"><h2>✈ 航班資訊</h2><span class="bag">🧳 星悅航空 託運行李：來回 30kg</span></div>
+<div class="flight">
+<div class="fl out"><h3>去程・10/15 (四)</h3>
+<div class="route"><div class="ap"><b>TPE</b><small>台北</small></div><div class="mid">✈ ･･･</div><div class="ap"><b>KKJ</b><small>北九州</small></div></div>
+<div class="tm"><span>03:00 出發</span><span>06:20 抵達</span></div></div>
+<div class="fl back"><h3>回程・10/18 (日)</h3>
+<div class="route"><div class="ap"><b>KKJ</b><small>北九州</small></div><div class="mid">✈ ･･･</div><div class="ap"><b>TPE</b><small>台北</small></div></div>
+<div class="tm"><span>23:40 出發</span><span>01:10 抵達（+1）</span></div></div>
+</div></section>
+
+<section id="plan"><h2>每日行程</h2>
+<div class="tabs" id="tabs"></div>
+<div class="card"><div class="dayhead" id="dh"></div><div id="dmap"></div><ul class="tl" id="tl"></ul></div>
+
+<h3 class="sub">📍 其它地點</h3>
+<div class="card" id="others"></div>
+
+</section>
+
+<section id="todo"><h2>✅ 待辦清單</h2>
+<div class="card"><ul class="todo" id="todos"></ul></div></section>
+
+<footer>🐟 旅途愉快 いってらっしゃい 🐟</footer>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+const T={bus:['bus','巴士'],train:['train','電車'],boat:['boat','渡輪'],walk:['walk','步行']};
+const P=d=>'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">'+d+'</svg>';
+const IC={bus:P('<rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 11h16M8 21v-4M16 21v-4"/>'),train:P('<rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/>'),boat:P('<path d="M3 15h18l-3 5H6z"/><path d="M6 15V9h12v6M12 9V4"/>'),walk:P('<circle cx="13" cy="4.5" r="2"/><path d="M12 8l-2 5 3 2v6M10 13l-3 2M12 8l3 3 3 1"/>'),plane:P('<path d="M21 15l-8-3V6a1.5 1.5 0 0 0-3 0v6l-8 3v2l8-1.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-3.5l8 1.5z"/>'),taxi:P('<path d="M4 16v-4l2-5h12l2 5v4z"/><circle cx="8" cy="17" r="1.6"/><circle cx="16" cy="17" r="1.6"/><path d="M4 12h16M10 4h4v3h-4z"/>'),clock:P('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),food:P('<path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-3 5-3 8h3v10"/>'),pin:P('<path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>'),mail:P('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/>'),bread:P('<path d="M5 11a7 5 0 0 1 14 0v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M9 11v3M12 11v3M15 11v3"/>'),donut:P('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/>'),glasses:P('<circle cx="6.5" cy="14" r="3.5"/><circle cx="17.5" cy="14" r="3.5"/><path d="M10 14h4M3 14l2-7M21 14l-2-7"/>'),bed:P('<path d="M3 18V7M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.5"/>')};
+const bi=k=>/時刻表/.test(k)?IC.clock:/午餐|晚餐/.test(k)?IC.food:IC.pin;
+const days=[
+{d:'10/15 (四)',t:'抵達・下關',s:[
+{n:'北九州機場',p:'06:20 抵達',l:[['巴士時刻表','https://www.kitakyu-air.jp/rev-access/rev-bus.php','']]},
+{n:'小倉車站',tg:[['bus','機場巴士']],p:'先找寄物櫃寄放行李，再開始逛'},
+{n:'旦過市場',must:1,tg:[['walk','步行']],p:'小倉的廚房，邊走邊吃',l:[['午餐:印度咖哩','https://maps.app.goo.gl/kYxsEBTR8tyGzbBD6','p']]},
+{n:'下關車站',tg:[['train','電車']],p:'經關門海峽前往本州'},
+{n:'リゾナーレ下関 check in',tg:[['taxi','計程車']],p:'卡蒙碼頭 Kaimon Wharf 附近'},
+{n:'睡覺 😴',p:'凌晨出發，早點休息'},
+{n:'リゾナーレ下関飯店',h:1,l:[['開啟地圖','https://maps.app.goo.gl/YH4qzTq7KDvDr35Z8','b']]}]},
+{d:'10/16 (五)',t:'唐戶・門司港',s:[
+{n:'唐戸市場',must:1,tg:[['walk','步行']],p:'海鮮、壽司'},
+{n:'海響館',tg:[['walk','步行']],p:'水族館'},
+{n:'搭船去門司港',must:1,tg:[['boat','搭船']],p:'幾分鐘橫渡海峽，從山口到福岡',l:[['関門連絡船時刻表','https://www.kanmon-kisen.co.jp/route/kanmon.html','b']]},
+{n:'海峽廣場',tg:[['walk','步行']],p:'門司港懷舊街區，晚上吃烤咖哩（哪間都可以）'},
+{n:'リゾナーレ下関飯店',h:1,l:[['開啟地圖','https://maps.app.goo.gl/YH4qzTq7KDvDr35Z8','b']]}]},
+{d:'10/17 (六)',t:'退房・小倉',s:[
+{n:'退房',p:'リゾナーレ下関 check out'},
+{n:'小倉車站',tg:[['train','電車']]},
+{n:'先去飯店寄放行李',tg:[['walk','步行']],p:'コンフォートホテル小倉'},
+{n:'附近逛逛',l:[['晚餐:文字燒','https://maps.app.goo.gl/93Qfw2ScsPuLev7d9','p']]},
+{n:'コンフォートホテル小倉飯店',h:1,l:[['開啟地圖','https://maps.app.goo.gl/Laam3mPpbRzKSsRe6','p']]}]},
+{d:'10/18 (日)',t:'三麗鷗・回家',s:[
+{n:'退房',p:'行李寄放在飯店 コンフォートホテル小倉'},
+{n:'三麗鷗 Harmonyland',must:1,tg:[['train','JR'],['bus','巴士']],p:'小倉車站搭 JR 日豐本線到杵築車站，再轉搭國東觀光巴士（往暘谷車站方向）約 10 分鐘，在ハーモニーランド下車',l:[['時刻表','https://www.harmonyland.jp/access','']]},
+{n:'小倉車站',tg:[['train','電車']],p:'回小倉，到飯店取行李'},
+{n:'北九州機場',tg:[['bus','機場巴士'],['plane','23:40 起飛']],p:'回台北 01:10 抵達',l:[['巴士時刻表','https://www.kitakyu-air.jp/rev-access/rev-bus.php','']]}]}];
+// day maps — 座標可自行修正：在 Google 地圖對地點按右鍵，第一行就是 緯度, 經度
+const M=[
+[['北九州機場',33.8459,131.0347,'北九州空港'],['小倉車站',33.88690,130.88254,'小倉駅'],['旦過市場',33.88194,130.87917,'旦過市場'],['下關車站',33.9506,130.9242,'下関駅'],['リゾナーレ下関',33.9595,130.9400,'リゾナーレ下関']],
+[['唐戸市場',33.9586,130.9412,'唐戸市場'],['海響館',33.9604,130.9388,'下関市立水族館 海響館'],['海峽廣場（門司港）',33.9459,130.9628,'門司港 海峡プラザ'],['リゾナーレ下関',33.9595,130.9400,'リゾナーレ下関']],
+[['リゾナーレ下関',33.9595,130.9400,'リゾナーレ下関'],['小倉車站',33.88690,130.88254,'小倉駅'],['コンフォートホテル小倉',33.8851,130.8836,'コンフォートホテル小倉']],
+[['コンフォートホテル小倉',33.8851,130.8836,'コンフォートホテル小倉'],['三麗鷗 Harmonyland',33.3680,131.5430,'ハーモニーランド'],['小倉車站',33.88690,130.88254,'小倉駅'],['北九州機場',33.8459,131.0347,'北九州空港']]];
+let map=null,layer=null;
+function drawMap(i){const el=document.getElementById('dmap');
+ if(typeof L==='undefined'){el.style.height='auto';el.style.padding='12px';el.textContent='地圖載入失敗，請確認網路連線。';return}
+ if(!map){map=L.map(el,{scrollWheelZoom:false});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);layer=L.layerGroup().addTo(map)}
+ layer.clearLayers();const pts=M[i];
+ pts.forEach((p,j)=>{const ic=L.divIcon({className:'pin',iconSize:[30,38],iconAnchor:[15,38],popupAnchor:[0,-34],html:'<svg width="30" height="38" viewBox="-15 -38 30 38"><path d="M0 0c-9-10-12-15-12-21a12 12 0 0 1 24 0c0 6-3 11-12 21z" fill="#8E6BBF" stroke="#3E3A39" stroke-width="2.5"/><text y="-15" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">'+(j+1)+'</text></svg>'});
+  L.marker([p[1],p[2]],{icon:ic,title:p[0]}).addTo(layer).bindPopup('<b>'+(j+1)+' '+p[0]+'</b><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p[3])+'">在 Google 地圖開啟</a>')});
+ map.invalidateSize();map.fitBounds(L.latLngBounds(pts.map(p=>[p[1],p[2]])),{padding:[36,36],maxZoom:16})}
+const tabs=document.getElementById('tabs'),tl=document.getElementById('tl'),dh=document.getElementById('dh');
+function show(i,anim){
+ [...tabs.children].forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-selected',j===i);if(j===i&&anim){b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop')}});
+ const d=days[i];dh.innerHTML='<span>Day '+(i+1)+'</span><i>'+d.d+'</i><span>'+d.t+'</span>';
+ drawMap(i);tl.className='tl';void tl.offsetWidth;if(anim)tl.classList.add('bounce');
+ tl.innerHTML=d.s.map(x=>'<li class="'+(x.must?'must':'')+(x.h?' stay':'')+'"><div class="stop">'+(x.h?'<div class="stay-label">'+IC.bed+'住宿飯店</div>':'')+(x.tg?x.tg.map(g=>'<span class="tag '+g[0]+'">'+IC[g[0]]+g[1]+'</span>').join('')+'<br>':'')+'<b>'+x.n+'</b>'+(x.p?'<p>'+x.p+'</p>':'')+(x.l?'<div>'+x.l.map(k=>'<a class="btn '+k[2]+'" href="'+k[1]+'" target="_blank" rel="noopener">'+bi(k[0])+k[0]+'</a>').join('')+'</div>':'')+'</div></li>').join('');
+}
+days.forEach((d,i)=>{const b=document.createElement('button');b.setAttribute('role','tab');b.innerHTML='Day '+(i+1)+'<small>'+d.d.slice(0,5)+'</small>';b.onclick=()=>show(i,true);tabs.appendChild(b)});
+show(0,false);
+// other places
+const OT=[
+['門司港車站','walk',[['麵包店','パン屋 PooUta','Y8Hkt858dadQXAUG7','bread']]],
+['小倉車站','train',[['麵包店','ミニヨン 小倉店（Crown / MIGNON 京町店）','ytSNG3BSQqtyv6og7','bread'],['麵包店','Dorothy（セントシティ B1F）','Mk8hfHe6oPcJTWox7','bread'],['甜甜圈','JACK IN THE DONUTS セントシティ小倉店','oEahuDHkBWei2akT7','donut'],['文字燒','なんじゃもんじゃの樹','93Qfw2ScsPuLev7d9','food'],['眼鏡','Zoff 小倉店（セントシティ 3F）','YwvzVJvABngZKDLM8','glasses'],['郵局','小倉站前郵局（ガーデンシティ 1F）','B6aqaYuafWwBrZzM9','mail']]],
+['下關車站','train',[['郵局','下關郵局','1xRf8bjeAtGja1Zr8','mail']]]];
+document.getElementById('others').innerHTML=OT.map(g=>'<div class="grp"><span class="tag st">'+IC[g[1]]+g[0]+'</span><br>'+g[2].map(k=>'<a class="pl" href="https://maps.app.goo.gl/'+k[2]+'" target="_blank" rel="noopener"><span class="cat">'+k[0]+'</span>'+k[1]+'</a>').join('')+'</div>').join('');
+// checklist
+const items=['護照（效期 6 個月以上）','Visit Japan Web 填寫 / QR code','日幣現金 + 交通 IC 卡','網路：eSIM / 網卡','行動電源・充電線'];
+const KEY='ktq-todo-2026';let st={};try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const ul=document.getElementById('todos');
+function prog(){}
+items.forEach((t,i)=>{const li=document.createElement('li');li.innerHTML='<label><input type="checkbox"><span>'+t+'</span></label>';const c=li.querySelector('input');c.checked=!!st[i];c.onchange=()=>{st[i]=c.checked;try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}prog()};ul.appendChild(li)});prog();
+// countdown
+const target=new Date('2026-10-15T03:00:00+08:00'),cd=document.getElementById('cd'),msg=document.getElementById('cdmsg');
+function tick(){let s=Math.floor((target-Date.now())/1000);
+ if(s<=0){cd.innerHTML='';msg.textContent='🎉 旅程開始囉！玩得開心';return}
+ const v=[[Math.floor(s/86400),'天'],[Math.floor(s%86400/3600),'時'],[Math.floor(s%3600/60),'分'],[s%60,'秒']];
+ cd.innerHTML=v.map(x=>'<div><b>'+x[0]+'</b><small>'+x[1]+'</small></div>').join('');msg.textContent='距離出發（10/15 03:00）還有';}
+tick();setInterval(tick,1000);
+</script>
+</body>
+</html>
